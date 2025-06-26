@@ -1,29 +1,27 @@
-# AQURESQUE - Sistem Manajemen Inventaris Air Minum
+# AQURESQUE - Sistem Manajemen Distribusi Bantuan Banjir
 
-AQURESQUE adalah aplikasi desktop berbasis Java Swing yang dirancang untuk membantu depot atau agen air minum dalam mengelola data inventaris, distribusi, dan pelaporan secara efisien dan terkomputerisasi. Proyek ini dibuat sebagai bagian dari pemenuhan tugas akademis.
+
+AQURESQUE adalah aplikasi desktop yang dibangun untuk membantu relawan dan organisasi dalam mengelola dan mendistribusikan bantuan kepada korban bencana banjir secara sistematis, transparan, dan efisien.
 
 ---
 
 ## 👨‍💻 Tim Pengembang
 
-Proyek ini dikerjakan dan dikembangkan oleh tim yang solid:
+Proyek kemanusiaan ini dikerjakan dan dikembangkan oleh:
 
 * **Muhammad Daffa Syahdana Haniif** (A11.2023.15284) - *Kerja*
 * **Naufal 'Azzah Dhiyaa'** (A11.2023.15279) - *Kelompok*
-
-*(Catatan: Silakan sesuaikan peran di atas sesuai dengan kontribusi masing-masing)*
-
 ---
 
 ## ✨ Fitur Utama
 
-Aplikasi ini dilengkapi dengan berbagai fitur untuk mempermudah manajemen bisnis air minum Anda:
+Aplikasi ini dirancang untuk mengatasi tantangan dalam manajemen bantuan bencana:
 
-* 🔐 **Sistem Otentikasi:** Terdapat form Login dan Pendaftaran untuk memastikan hanya pengguna terdaftar yang bisa mengakses sistem.
-* 📊 **Dashboard Utama:** Halaman utama yang informatif, menampilkan menu-menu utama dan area untuk berita atau informasi terkini.
-* 📦 **Manajemen Gudang:** Modul untuk mengelola data stok galon, baik yang masuk maupun yang keluar.
-* 🚚 **Manajemen Distribusi:** Modul untuk mencatat dan melacak proses distribusi galon ke pelanggan.
-* 📄 **Manajemen Laporan:** Fitur untuk menghasilkan laporan penjualan, stok, dan distribusi untuk analisis bisnis.
+* 🔐 **Sistem Otentikasi Relawan:** Dilengkapi form Login dan Pendaftaran untuk memastikan hanya relawan terverifikasi yang dapat mengelola data.
+* 📊 **Dashboard Koordinasi:** Halaman utama yang berfungsi sebagai pusat komando, menampilkan menu-menu strategis dan informasi penting terkait status bencana.
+* 📦 **Manajemen Logistik (Gudang):** Modul untuk mencatat, mengkategorikan, dan memantau stok barang bantuan yang masuk dan keluar dari posko utama.
+* 🚚 **Manajemen Distribusi:** Fitur untuk merencanakan, mencatat, dan melacak proses penyaluran bantuan ke berbagai titik lokasi atau penerima bantuan.
+* 📄 **Pelaporan & Akuntabilitas:** Modul untuk menghasilkan laporan terperinci mengenai jumlah bantuan yang diterima dan yang telah disalurkan, demi menjaga transparansi.
 
 ---
 
@@ -59,14 +57,14 @@ Untuk menjalankan proyek ini di komputermu, ikuti langkah-langkah berikut:
     * Arahkan ke folder tempat kamu meng-clone repository, lalu klik `Open Project`.
 
 4.  **Konfigurasi Database:**
-    * Buat sebuah database baru di MySQL (misalnya dengan nama `db_aquresque`).
+    * Buat sebuah database baru di MySQL (misalnya dengan nama `db_bantuan_banjir`).
     * Import file `.sql` yang berisi struktur tabel (jika ada).
     * Pastikan file library `mysql-connector-j-9.3.0.jar` sudah ditambahkan ke dalam Libraries proyek di NetBeans.
     * Sesuaikan kode koneksi database di dalam Java agar sesuai dengan host, username, dan password database-mu.
 
 5.  **Jalankan Aplikasi:**
     * Klik kanan pada proyek di NetBeans.
-    * Pilih `Run` atau tekan tombol `F6`. Aplikasi akan dimulai dari `LoginFrame.java` atau `MainFrame.java` tergantung konfigurasi awal.
+    * Pilih `Run` atau tekan tombol `F6`.
 
 ---
 
@@ -74,12 +72,6 @@ Untuk menjalankan proyek ini di komputermu, ikuti langkah-langkah berikut:
 
 Berikut adalah beberapa cuplikan tampilan dari aplikasi AQURESQUE:
 
-**1. Halaman Login & Pendaftaran**
-*(Saran: Ambil screenshot halaman Login dan Daftar lalu letakkan di sini)*
-
-**2. Halaman Utama (Dashboard)**
-*(Saran: Ambil screenshot halaman Utama setelah login dan letakkan di sini)*
-
 ---
 
-Terima kasih telah mengunjungi repository kami!
+Terima kasih telah mengunjungi repository kami. Semoga aplikasi ini dapat memberikan manfaat.

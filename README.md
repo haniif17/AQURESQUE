@@ -1,7 +1,5 @@
 # AQURESQUE - Sistem Manajemen Inventaris Air Minum
 
-![Logo](https://raw.githubusercontent.com/haniif17/AQURESQUE/main/src/aquresque/aquresquelogo.png)
-
 AQURESQUE adalah aplikasi desktop berbasis Java Swing yang dirancang untuk membantu depot atau agen air minum dalam mengelola data inventaris, distribusi, dan pelaporan secara efisien dan terkomputerisasi. Proyek ini dibuat sebagai bagian dari pemenuhan tugas akademis.
 
 ---
@@ -10,8 +8,8 @@ AQURESQUE adalah aplikasi desktop berbasis Java Swing yang dirancang untuk memba
 
 Proyek ini dikerjakan dan dikembangkan oleh tim yang solid:
 
-* **Muhammad Daffa Syahdana Haniif** (A11.2023.15284) - *Lead Developer*
-* **Naufal 'Azzah Dhiyaa'** (A11.2023.15279) - *UI/UX & Database Designer*
+* **Muhammad Daffa Syahdana Haniif** (A11.2023.15284) - *Kerja*
+* **Naufal 'Azzah Dhiyaa'** (A11.2023.15279) - *Kelompok*
 
 *(Catatan: Silakan sesuaikan peran di atas sesuai dengan kontribusi masing-masing)*
 

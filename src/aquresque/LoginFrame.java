@@ -34,6 +34,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         tf_sandiMasuk = new javax.swing.JTextField();
         btn_masuk = new javax.swing.JButton();
+        btn_daftarAkun = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(13, 71, 161));
@@ -53,7 +54,6 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel3.setText("username :");
 
         tf_userMasuk.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
-        tf_userMasuk.setText("masukkan username");
         tf_userMasuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_userMasukActionPerformed(evt);
@@ -65,7 +65,6 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel4.setText("kata sandi :");
 
         tf_sandiMasuk.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
-        tf_sandiMasuk.setText("masukkan kata sandi");
         tf_sandiMasuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_sandiMasukActionPerformed(evt);
@@ -81,6 +80,15 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
+        btn_daftarAkun.setBackground(new java.awt.Color(137, 71, 161));
+        btn_daftarAkun.setForeground(new java.awt.Color(255, 255, 255));
+        btn_daftarAkun.setText("daftar");
+        btn_daftarAkun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_daftarAkunActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -91,14 +99,17 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addGap(89, 89, 89))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_masuk)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_daftarAkun)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel4)
                         .addComponent(jLabel3)
                         .addComponent(tf_sandiMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                        .addComponent(tf_userMasuk)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                        .addComponent(tf_userMasuk))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(btn_masuk)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,9 +124,11 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tf_sandiMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_daftarAkun)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_masuk)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,7 +152,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(27, 27, 27)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,6 +169,10 @@ public class LoginFrame extends javax.swing.JFrame {
     private void btn_masukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_masukActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_masukActionPerformed
+
+    private void btn_daftarAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_daftarAkunActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_daftarAkunActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,6 +210,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_daftarAkun;
     private javax.swing.JButton btn_masuk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

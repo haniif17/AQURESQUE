@@ -159,6 +159,75 @@ public class DatabaseController {
         }
     }
     
+    public static boolean kirimBantuan(String kodeBarang) {
+        String sql = "UPDATE logistik SET status = 'Terkirim' WHERE kode_brg = ? AND status = 'Belum Terkirim'";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, kodeBarang);
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows == 0) {
+                JOptionPane.showMessageDialog(null, "Gagal: Kode Barang tidak ditemukan atau statusnya sudah 'Terkirim'.", "Proses Gagal", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error saat proses pengiriman: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+    
+    public static Barang getDetailBarangByKode(String kodeBarang) {
+        String sql = "SELECT nama_brg, jumlah, satuan FROM logistik WHERE kode_brg = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, kodeBarang);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return new Barang(
+                    kodeBarang,
+                    rs.getString("nama_brg"),
+                    rs.getInt("jumlah"),
+                    rs.getString("satuan")
+                );
+            } else {
+                return null; 
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    
+    public static boolean catatRiwayatKirim(String kode, String nama, int jumlah, String satuan, String provinsi, String kota) {
+        String sql = "INSERT INTO riwayat_distribusi (kode_brg, nama_brg, jumlah, satuan, provinsi_tujuan, kota_tujuan) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, kode);
+            pstmt.setString(2, nama);
+            pstmt.setInt(3, jumlah);
+            pstmt.setString(4, satuan);
+            pstmt.setString(5, provinsi);
+            pstmt.setString(6, kota);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Gagal mencatat riwayat: " + e.getMessage());
+            return false;
+        }
+    }
+
+    
+    public static ResultSet getSemuaRiwayat() {
+        String sql = "SELECT * FROM riwayat_distribusi ORDER BY tanggal_kirim DESC";
+        try {
+            Connection conn = getConnection();
+            Statement stmt = conn.createStatement();
+            return stmt.executeQuery(sql);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error mengambil data riwayat: " + e.getMessage());
+            return null;
+        }
+    }
+    
     public static void main(String[] args) {
         System.out.println("Mencoba melakukan koneksi ke database...");
         

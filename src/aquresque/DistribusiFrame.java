@@ -4,6 +4,10 @@
  */
 package aquresque;
 
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ACER
@@ -15,8 +19,38 @@ public class DistribusiFrame extends javax.swing.JFrame {
      */
     public DistribusiFrame() {
         initComponents();
+        loadDistribusiData();
     }
 
+    private void loadDistribusiData() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Kode Barang");
+        model.addColumn("Jenis Barang");
+        model.addColumn("Nama Barang");
+        model.addColumn("Jumlah");
+        model.addColumn("Satuan");
+        model.addColumn("Status");
+
+        try {
+            ResultSet rs = DatabaseController.getAllBantuan();
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getInt("id"),
+                    rs.getString("kode_brg"),
+                    rs.getString("jenis_brg"),
+                    rs.getString("nama_brg"),
+                    rs.getInt("jumlah"),
+                    rs.getString("satuan"),
+                    rs.getString("status")
+                });
+            }
+            tbl_distribusiFrame.setModel(model);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal memuat data distribusi: " + e.getMessage());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,6 +68,11 @@ public class DistribusiFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_distribusiFrame = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        btn_kirimBrg = new javax.swing.JButton();
+        btn_kembali = new javax.swing.JButton();
+        btn_refreshBrg = new javax.swing.JButton();
+        btn_riwayatKirim = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,23 +119,67 @@ public class DistribusiFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        btn_kirimBrg.setBackground(new java.awt.Color(56, 142, 60));
+        btn_kirimBrg.setText("KIRIM BARANG");
+        btn_kirimBrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_kirimBrgActionPerformed(evt);
+            }
+        });
+
+        btn_kembali.setBackground(new java.awt.Color(255, 152, 0));
+        btn_kembali.setText("KEMBALI");
+        btn_kembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_kembaliActionPerformed(evt);
+            }
+        });
+
+        btn_refreshBrg.setBackground(new java.awt.Color(117, 117, 117));
+        btn_refreshBrg.setText("REFRESH BARANG");
+        btn_refreshBrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refreshBrgActionPerformed(evt);
+            }
+        });
+
+        btn_riwayatKirim.setBackground(new java.awt.Color(117, 117, 117));
+        btn_riwayatKirim.setText("RIWAYAT PENGIRIMAN");
+        btn_riwayatKirim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_riwayatKirimActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_userDistribusi, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3))
+                        .addContainerGap()
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_kembali)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lbl_userDistribusi, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_kirimBrg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_refreshBrg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_riwayatKirim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -111,20 +194,53 @@ public class DistribusiFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(lbl_userDistribusi))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addGap(17, 17, 17)
+                        .addComponent(btn_kirimBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(btn_refreshBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(btn_riwayatKirim, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_kirimBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kirimBrgActionPerformed
+        // TODO add your handling code here:
+        KirimBarangDialog kirimDialog = new KirimBarangDialog();
+        kirimDialog.setVisible(true);
+    }//GEN-LAST:event_btn_kirimBrgActionPerformed
+
+    private void btn_kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kembaliActionPerformed
+        // TODO add your handling code here:
+        new MainFrame().setVisible(true);
+    }//GEN-LAST:event_btn_kembaliActionPerformed
+
+    private void btn_refreshBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshBrgActionPerformed
+        // TODO add your handling code here:
+        loadDistribusiData();
+        JOptionPane.showMessageDialog(this, "Tabel distribusi telah diperbarui.");
+    }//GEN-LAST:event_btn_refreshBrgActionPerformed
+
+    private void btn_riwayatKirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_riwayatKirimActionPerformed
+        // TODO add your handling code here:
+        RiwayatBarangDialog riwDialog = new RiwayatBarangDialog();
+        riwDialog.setVisible(true);
+    }//GEN-LAST:event_btn_riwayatKirimActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,10 +278,15 @@ public class DistribusiFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_kembali;
+    private javax.swing.JButton btn_kirimBrg;
+    private javax.swing.JButton btn_refreshBrg;
+    private javax.swing.JButton btn_riwayatKirim;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_userDistribusi;

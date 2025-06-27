@@ -180,6 +180,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btn_distribusiMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_distribusiMainActionPerformed
         // TODO add your handling code here:
+        new DistribusiFrame().setVisible(true);
     }//GEN-LAST:event_btn_distribusiMainActionPerformed
 
     private void btn_laporanMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_laporanMainActionPerformed

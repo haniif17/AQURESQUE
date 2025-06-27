@@ -110,6 +110,55 @@ public class DatabaseController {
         }
     }
     
+    public static boolean updateJumlahBantuan(String kodeBarang, int jumlahBaru) {
+        String sql = "UPDATE logistik SET jumlah = ? WHERE kode_brg = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, jumlahBaru);
+            pstmt.setString(2, kodeBarang);
+
+            int affectedRows = pstmt.executeUpdate();
+
+            // Jika tidak ada baris yang terpengaruh, berarti Kode Barang tidak ditemukan
+            if (affectedRows == 0) {
+                JOptionPane.showMessageDialog(null, "Gagal: Kode Barang '" + kodeBarang + "' tidak ditemukan.", "Update Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            return true; // Berhasil jika satu baris terpengaruh
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error saat mengupdate data: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+    
+    public static boolean hapusBantuan(String kodeBarang) {
+        String sql = "DELETE FROM logistik WHERE kode_brg = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, kodeBarang);
+
+            int affectedRows = pstmt.executeUpdate();
+
+            // Jika tidak ada baris yang terpengaruh, berarti Kode Barang tidak ditemukan
+            if (affectedRows == 0) {
+                JOptionPane.showMessageDialog(null, "Gagal: Kode Barang '" + kodeBarang + "' tidak ditemukan.", "Hapus Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            return true; // Berhasil jika satu baris terhapus
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error saat menghapus data: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+    
     public static void main(String[] args) {
         System.out.println("Mencoba melakukan koneksi ke database...");
         

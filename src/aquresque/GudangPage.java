@@ -72,6 +72,8 @@ public class GudangPage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_dataGdg = new javax.swing.JTable();
+        btn_refreshTable = new javax.swing.JButton();
+        btn_kembaliMain = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,6 +156,24 @@ public class GudangPage extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btn_refreshTable.setBackground(new java.awt.Color(204, 255, 0));
+        btn_refreshTable.setForeground(new java.awt.Color(255, 255, 255));
+        btn_refreshTable.setText("REFRESH BARANG");
+        btn_refreshTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refreshTableActionPerformed(evt);
+            }
+        });
+
+        btn_kembaliMain.setBackground(new java.awt.Color(51, 51, 0));
+        btn_kembaliMain.setForeground(new java.awt.Color(255, 255, 255));
+        btn_kembaliMain.setText("KEMBALI");
+        btn_kembaliMain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_kembaliMainActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,7 +188,9 @@ public class GudangPage extends javax.swing.JFrame {
                         .addComponent(lbl_userGudang))
                     .addComponent(btn_tambahBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_editBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_hapusBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_hapusBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_refreshTable, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_kembaliMain, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -196,6 +218,10 @@ public class GudangPage extends javax.swing.JFrame {
                         .addComponent(btn_editBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_hapusBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(btn_refreshTable, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(btn_kembaliMain, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(13, 13, 13)
@@ -213,11 +239,27 @@ public class GudangPage extends javax.swing.JFrame {
 
     private void btn_editBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editBrgActionPerformed
         // TODO add your handling code here:
+        EditBarangDialog editDialog = new EditBarangDialog();
+        editDialog.setVisible(true);
     }//GEN-LAST:event_btn_editBrgActionPerformed
 
     private void btn_hapusBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusBrgActionPerformed
         // TODO add your handling code here:
+        HapusBarangDialog hapusDialog = new HapusBarangDialog();
+        hapusDialog.setVisible(true);
     }//GEN-LAST:event_btn_hapusBrgActionPerformed
+
+    private void btn_refreshTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshTableActionPerformed
+        // TODO add your handling code here:
+        loadTableData();
+        JOptionPane.showMessageDialog(this, "Tabel telah diperbarui.");
+    }//GEN-LAST:event_btn_refreshTableActionPerformed
+
+    private void btn_kembaliMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kembaliMainActionPerformed
+        // TODO add your handling code here:
+        MainFrame mainFrame = new MainFrame();
+        mainFrame.setVisible(true);
+    }//GEN-LAST:event_btn_kembaliMainActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,6 +299,8 @@ public class GudangPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_editBrg;
     private javax.swing.JButton btn_hapusBrg;
+    private javax.swing.JButton btn_kembaliMain;
+    private javax.swing.JButton btn_refreshTable;
     private javax.swing.JButton btn_tambahBrg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

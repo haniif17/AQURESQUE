@@ -17,6 +17,9 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void setUser(String name) {
+        lbl_userMain.setText(name);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -185,6 +188,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btn_gudangMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gudangMainActionPerformed
         // TODO add your handling code here:
+        GudangPage gudangPage = new GudangPage();
+        gudangPage.setVisible(true);
     }//GEN-LAST:event_btn_gudangMainActionPerformed
 
     /**

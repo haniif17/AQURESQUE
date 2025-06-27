@@ -184,6 +184,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btn_laporanMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_laporanMainActionPerformed
         // TODO add your handling code here:
+        new LaporanFrame().setVisible(true);
     }//GEN-LAST:event_btn_laporanMainActionPerformed
 
     private void btn_gudangMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gudangMainActionPerformed

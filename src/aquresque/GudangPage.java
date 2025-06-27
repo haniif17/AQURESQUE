@@ -4,6 +4,10 @@
  */
 package aquresque;
 
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ACER
@@ -15,6 +19,37 @@ public class GudangPage extends javax.swing.JFrame {
      */
     public GudangPage() {
         initComponents();
+        loadTableData();
+    }
+    
+    private void loadTableData() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Kode Barang");
+        model.addColumn("Jenis Barang");
+        model.addColumn("Nama Barang");
+        model.addColumn("Jumlah");
+        model.addColumn("Satuan");
+        model.addColumn("Status");
+
+        try {
+            ResultSet rs = DatabaseController.getAllBantuan();
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getInt("id"),
+                    rs.getString("kode_brg"),
+                    rs.getString("jenis_brg"),
+                    rs.getString("nama_brg"),
+                    rs.getInt("jumlah"),
+                    rs.getString("satuan"),
+                    rs.getString("status")
+                });
+            }
+            tbl_dataGdg.setModel(model);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage());
+        }
     }
 
     /**
@@ -36,7 +71,7 @@ public class GudangPage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_dataGdg = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,7 +119,7 @@ public class GudangPage extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         jLabel4.setText("Data Gudang");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_dataGdg.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -92,7 +127,7 @@ public class GudangPage extends javax.swing.JFrame {
                 "KODE BRG", "JENIS BRG", "NAMA BRG", "JUMLAH", "SATUAN"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_dataGdg);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,6 +207,8 @@ public class GudangPage extends javax.swing.JFrame {
 
     private void btn_tambahBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahBrgActionPerformed
         // TODO add your handling code here: 
+        TambahBarangDialog tambahDialog = new TambahBarangDialog();
+        tambahDialog.setVisible(true);
     }//GEN-LAST:event_btn_tambahBrgActionPerformed
 
     private void btn_editBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editBrgActionPerformed
@@ -227,7 +264,7 @@ public class GudangPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_userGudang;
+    private javax.swing.JTable tbl_dataGdg;
     // End of variables declaration//GEN-END:variables
 }

@@ -190,6 +190,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="CANCEL"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cancelBrgActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_simpanBrg">
       <Properties>
@@ -198,6 +201,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="SIMPAN"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_simpanBrgActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

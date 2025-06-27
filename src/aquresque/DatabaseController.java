@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
 /**
  *
  * @author ACER
@@ -30,19 +31,17 @@ public class DatabaseController {
         return conn;
     }
 
+    // --- FUNGSI UNTUK MANAJEMEN USERS ---
+
     public static boolean loginUser(String username, String password) {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-        
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
             pstmt.setString(1, username);
             pstmt.setString(2, password);
-
             try (ResultSet rs = pstmt.executeQuery()) {
                 return rs.next();
             }
-
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error saat login: " + e.getMessage(), "Login Error", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -52,47 +51,61 @@ public class DatabaseController {
     public static boolean registerUser(String username, String password) {
         String checkSql = "SELECT * FROM users WHERE username = ?";
         String insertSql = "INSERT INTO users (username, password) VALUES (?, ?)";
-
         try (Connection conn = getConnection()) {
             try (PreparedStatement checkPstmt = conn.prepareStatement(checkSql)) {
                 checkPstmt.setString(1, username);
                 try (ResultSet rs = checkPstmt.executeQuery()) {
                     if (rs.next()) {
-                        JOptionPane.showMessageDialog(null, "Username sudah terdaftar. Silakan gunakan username lain.", "Registrasi Gagal", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Username sudah terdaftar.", "Registrasi Gagal", JOptionPane.WARNING_MESSAGE);
                         return false;
                     }
                 }
             }
-
             try (PreparedStatement insertPstmt = conn.prepareStatement(insertSql)) {
                 insertPstmt.setString(1, username);
                 insertPstmt.setString(2, password);
-
                 int affectedRows = insertPstmt.executeUpdate();
                 return affectedRows > 0;
             }
-
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error saat registrasi: " + e.getMessage(), "Registrasi Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
-    
-    public static boolean tambahBantuan(String namaBarang, int jumlah, String satuan) {
-        String sql = "INSERT INTO logistik (nama_barang, jumlah, satuan) VALUES (?, ?, ?)";
-        
+
+    // --- FUNGSI UNTUK MANAJEMEN LOGISTIK (GUDANG) ---
+
+    public static ResultSet getAllBantuan() {
+        String sql = "SELECT id, kode_brg, jenis_brg, nama_brg, jumlah, satuan, status FROM logistik ORDER BY id ASC";
+        try {
+            Connection conn = getConnection();
+            Statement stmt = conn.createStatement();
+            return stmt.executeQuery(sql);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error saat mengambil data: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public static boolean tambahBantuan(String kode, String jenis, String nama, int jumlah, String satuan) {
+        String sql = "INSERT INTO logistik (kode_brg, jenis_brg, nama_brg, jumlah, satuan) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-            pstmt.setString(1, namaBarang);
-            pstmt.setInt(2, jumlah);
-            pstmt.setString(3, satuan);
-            
+
+            pstmt.setString(1, kode);
+            pstmt.setString(2, jenis);
+            pstmt.setString(3, nama);
+            pstmt.setInt(4, jumlah);
+            pstmt.setString(5, satuan);
+
             int affectedRows = pstmt.executeUpdate();
             return affectedRows > 0;
-
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error saat menambah data bantuan: " + e.getMessage(), "Input Error", JOptionPane.ERROR_MESSAGE);
+            if (e.getSQLState().equals("23000")) {
+                 JOptionPane.showMessageDialog(null, "Gagal: Kode Barang '" + kode + "' sudah ada.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                 JOptionPane.showMessageDialog(null, "Error saat menambah data: " + e.getMessage(), "Input Error", JOptionPane.ERROR_MESSAGE);
+            }
             return false;
         }
     }

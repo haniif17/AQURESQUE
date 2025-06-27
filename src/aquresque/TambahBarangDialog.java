@@ -4,6 +4,7 @@
  */
 package aquresque;
 
+import javax.swing.JOptionPane;
 /**
  *
  * @author ACER
@@ -93,9 +94,19 @@ public class TambahBarangDialog extends javax.swing.JFrame {
 
         btn_cancelBrg.setBackground(new java.awt.Color(255, 125, 0));
         btn_cancelBrg.setText("CANCEL");
+        btn_cancelBrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelBrgActionPerformed(evt);
+            }
+        });
 
         btn_simpanBrg.setBackground(new java.awt.Color(255, 125, 0));
         btn_simpanBrg.setText("SIMPAN");
+        btn_simpanBrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_simpanBrgActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,6 +199,37 @@ public class TambahBarangDialog extends javax.swing.JFrame {
     private void tf_satuanBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_satuanBrgActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_satuanBrgActionPerformed
+
+    private void btn_simpanBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanBrgActionPerformed
+        // TODO add your handling code here:
+        String kode = tf_kodeBrg.getText();
+        String jenis = tf_jenisBrg.getText();
+        String nama = tf_namaBrg.getText();
+        String jumlahStr = tf_jumlahBrg.getText();
+        String satuan = tf_satuanBrg.getText();
+
+        if (kode.isEmpty() || jenis.isEmpty() || nama.isEmpty() || jumlahStr.isEmpty() || satuan.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Semua kolom harus diisi!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            int jumlah = Integer.parseInt(jumlahStr);
+            boolean sukses = DatabaseController.tambahBantuan(kode, jenis, nama, jumlah, satuan);
+
+            if (sukses) {
+                JOptionPane.showMessageDialog(this, "Data bantuan berhasil ditambahkan!");
+                this.dispose();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Kolom 'Jumlah' harus diisi dengan angka!", "Input Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_simpanBrgActionPerformed
+
+    private void btn_cancelBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelBrgActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btn_cancelBrgActionPerformed
 
     /**
      * @param args the command line arguments

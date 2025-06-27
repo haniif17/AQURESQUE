@@ -4,6 +4,7 @@
  */
 package aquresque;
 
+import javax.swing.JOptionPane;
 /**
  *
  * @author ACER
@@ -168,10 +169,33 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void btn_masukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_masukActionPerformed
         // TODO add your handling code here:
+        String username = tf_userMasuk.getText();
+        String password = tf_sandiMasuk.getText();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username dan Kata Sandi harus diisi!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        boolean loginBerhasil = DatabaseController.loginUser(username, password);
+
+        if (loginBerhasil) {
+            JOptionPane.showMessageDialog(this, "Login Berhasil!");
+
+            MainFrame mainFrame = new MainFrame();
+            mainFrame.setUser(username);
+            mainFrame.setVisible(true);
+
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Username atau Kata Sandi salah.", "Login Gagal", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btn_masukActionPerformed
 
     private void btn_daftarAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_daftarAkunActionPerformed
         // TODO add your handling code here:
+         new DaftarFrame().setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_btn_daftarAkunActionPerformed
 
     /**

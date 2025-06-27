@@ -4,6 +4,7 @@
  */
 package aquresque;
 
+import javax.swing.JOptionPane;
 /**
  *
  * @author ACER
@@ -15,6 +16,7 @@ public class DaftarFrame extends javax.swing.JFrame {
      */
     public DaftarFrame() {
         initComponents();
+        btn_daftar.setBackground(new java.awt.Color(255, 152, 0));
     }
 
     /**
@@ -55,7 +57,6 @@ public class DaftarFrame extends javax.swing.JFrame {
         jLabel4.setText("username :");
 
         tf_userDaftar.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        tf_userDaftar.setText("masukkan username");
         tf_userDaftar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_userDaftarActionPerformed(evt);
@@ -67,7 +68,6 @@ public class DaftarFrame extends javax.swing.JFrame {
         jLabel5.setText("kata sandi :");
 
         tf_sandiDaftar.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        tf_sandiDaftar.setText("masukkan kata sandi");
         tf_sandiDaftar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_sandiDaftarActionPerformed(evt);
@@ -79,7 +79,6 @@ public class DaftarFrame extends javax.swing.JFrame {
         jLabel6.setText("konfirmasi kata sandi :");
 
         tf_konfirsandiDaftar.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        tf_konfirsandiDaftar.setText("konfirmasi kata sandi");
         tf_konfirsandiDaftar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_konfirsandiDaftarActionPerformed(evt);
@@ -185,6 +184,45 @@ public class DaftarFrame extends javax.swing.JFrame {
 
     private void btn_daftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_daftarActionPerformed
         // TODO add your handling code here:
+        String username = tf_userDaftar.getText();
+        String password = tf_sandiDaftar.getText();
+        String konfirmasiPassword = tf_konfirsandiDaftar.getText();
+
+        if (username.isEmpty() || password.isEmpty() || konfirmasiPassword.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Semua kolom harus diisi!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!password.equals(konfirmasiPassword)) {
+            JOptionPane.showMessageDialog(this, "Kata sandi dan konfirmasi kata sandi tidak cocok!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        boolean registrasiBerhasil = DatabaseController.registerUser(username, password);
+
+        if (registrasiBerhasil) {
+            String pesan = "Pendaftaran berhasil!";
+            String judul = "Sukses";
+            Object[] options = {"Lanjut ke Login"};
+
+            int pilihan = JOptionPane.showOptionDialog(
+                this,
+                pesan,
+                judul,
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                options,
+                options[0]
+            );
+
+            if (pilihan == 0) {
+                new LoginFrame().setVisible(true);
+                this.dispose();
+            }
+        } else {
+            tf_userDaftar.requestFocus();
+        }
     }//GEN-LAST:event_btn_daftarActionPerformed
 
     /**

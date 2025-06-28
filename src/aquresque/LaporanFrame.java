@@ -70,6 +70,9 @@ public class LaporanFrame extends javax.swing.JFrame {
         tbl_laporanFrame = new javax.swing.JTable();
         btn_refreshLaporan = new javax.swing.JButton();
         btn_mainPage = new javax.swing.JButton();
+        tf_cariBrgLaporan = new javax.swing.JTextField();
+        btn_cariBrg = new javax.swing.JButton();
+        btn_riwayatBrg = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +114,28 @@ public class LaporanFrame extends javax.swing.JFrame {
             }
         });
 
+        tf_cariBrgLaporan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_cariBrgLaporanActionPerformed(evt);
+            }
+        });
+
+        btn_cariBrg.setBackground(new java.awt.Color(51, 51, 0));
+        btn_cariBrg.setText("CARI");
+        btn_cariBrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cariBrgActionPerformed(evt);
+            }
+        });
+
+        btn_riwayatBrg.setBackground(new java.awt.Color(204, 255, 0));
+        btn_riwayatBrg.setText("RIWAYAT BARANG");
+        btn_riwayatBrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_riwayatBrgActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,23 +144,29 @@ public class LaporanFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbl_userLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_mainPage, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_refreshLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(69, 69, 69))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(109, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                        .addComponent(lbl_userLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(646, 646, 646))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tf_cariBrgLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_cariBrg))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_riwayatBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_mainPage, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_refreshLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(69, 69, 69))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,10 +180,15 @@ public class LaporanFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(btn_refreshLaporan)
-                    .addComponent(btn_mainPage))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addComponent(btn_mainPage)
+                    .addComponent(btn_riwayatBrg))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_cariBrgLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cariBrg))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         pack();
@@ -169,6 +205,52 @@ public class LaporanFrame extends javax.swing.JFrame {
         MainFrame mainHome = new MainFrame();
         mainHome.setVisible(true);
     }//GEN-LAST:event_btn_mainPageActionPerformed
+
+    private void tf_cariBrgLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_cariBrgLaporanActionPerformed
+        // TODO add your handling code here:
+        btn_cariBrg.doClick();
+    }//GEN-LAST:event_tf_cariBrgLaporanActionPerformed
+
+    private void btn_cariBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cariBrgActionPerformed
+        // TODO add your handling code here:
+        String keyword = tf_cariBrgLaporan.getText();
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Kode Barang");
+        model.addColumn("Jenis Barang");
+        model.addColumn("Nama Barang");
+        model.addColumn("Jumlah");
+        model.addColumn("Satuan");
+        model.addColumn("Status");
+
+        try {
+            ResultSet rs = DatabaseController.searchBarang(keyword);
+
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getInt("id"),
+                    rs.getString("kode_brg"),
+                    rs.getString("jenis_brg"),
+                    rs.getString("nama_brg"),
+                    rs.getInt("jumlah"),
+                    rs.getString("satuan"),
+                    rs.getString("status")
+                });
+            }
+
+            tbl_laporanFrame.setModel(model);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal menampilkan hasil pencarian: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btn_cariBrgActionPerformed
+
+    private void btn_riwayatBrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_riwayatBrgActionPerformed
+        // TODO add your handling code here:
+        RiwayatBarangDialog riwDialog = new RiwayatBarangDialog();
+        riwDialog.setVisible(true);
+    }//GEN-LAST:event_btn_riwayatBrgActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,13 +288,16 @@ public class LaporanFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cariBrg;
     private javax.swing.JButton btn_mainPage;
     private javax.swing.JButton btn_refreshLaporan;
+    private javax.swing.JButton btn_riwayatBrg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_userLaporan;
     private javax.swing.JTable tbl_laporanFrame;
+    private javax.swing.JTextField tf_cariBrgLaporan;
     // End of variables declaration//GEN-END:variables
 }

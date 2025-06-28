@@ -228,6 +228,24 @@ public class DatabaseController {
         }
     }
     
+    public static ResultSet searchBarang(String keyword) {
+        String sql = "SELECT * FROM logistik WHERE kode_brg LIKE ? OR nama_brg LIKE ?";
+
+        try {
+            Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, "%" + keyword + "%");
+            pstmt.setString(2, "%" + keyword + "%");
+
+            return pstmt.executeQuery();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error saat mencari data: " + e.getMessage());
+            return null;
+        }
+    }
+    
     public static void main(String[] args) {
         System.out.println("Mencoba melakukan koneksi ke database...");
         

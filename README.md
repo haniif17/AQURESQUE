@@ -10,7 +10,7 @@ AQURESQUE adalah aplikasi desktop yang dibangun untuk membantu relawan dan organ
 Proyek kemanusiaan ini dikerjakan dan dikembangkan oleh:
 
 * **Muhammad Daffa Syahdana Haniif** (A11.2023.15284) - *Kerja*
-* **Naufal 'Azzah Dhiyaa'** (A11.2023.15279) - *Kelompok*
+* **Naufal 'Azzah Dhiyaa'** (A11.2023.15272) - *Kelompok*
 ---
 
 ## ✨ Fitur Utama

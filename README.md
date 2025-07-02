@@ -68,10 +68,10 @@ Untuk menjalankan proyek ini di komputermu, ikuti langkah-langkah berikut:
 
 ---
 
-## 📸 Tampilan Aplikasi
+## 📸 Buku Panduan
 
-Berikut adalah beberapa cuplikan tampilan dari aplikasi AQURESQUE:
-
+Berikut adalah buku panduan dari aplikasi AQURESQUE:
+https://drive.google.com/file/d/1zAhT4HogypY94QngsNMXnfNVcdLCom-5/view?usp=sharing
 ---
 
 Terima kasih telah mengunjungi repository kami. Semoga aplikasi ini dapat memberikan manfaat.
